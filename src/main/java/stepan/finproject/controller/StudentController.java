@@ -1,10 +1,7 @@
 package stepan.finproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import stepan.finproject.model.Student;
 import stepan.finproject.repository.StudentRepository;
 
@@ -18,17 +15,17 @@ public class StudentController {
     @Autowired
     StudentRepository studentRepository;
 
-    @PostMapping("/api/student/save")
-    public Student save(Student student){
+    @PostMapping("/save")
+    public Student save(@RequestBody Student student){
         return studentRepository.save(student);
     }
 
-    @GetMapping("/api/student/findById")
-    public Optional<Student> findById(Integer id){
+    @GetMapping("/findById")
+    public Optional<Student> findById(@RequestParam Integer id){
         return studentRepository.findById(id);
     }
 
-    @GetMapping("/api/student/findAll")
+    @GetMapping("/findAll")
     public List<Student> findAll(){
         List<Student> students = studentRepository.findAll();
         return students;
